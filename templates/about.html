@@ -1,0 +1,404 @@
+{% load static %}
+<!Doctype html>
+
+<html lang="en" class="h-100">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <title>Donor4Life</title>
+    </head>
+
+    <body>
+
+        <style>
+            body{
+                background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);;
+              }
+        </style>
+        
+        <div class="py-0 mx-auto">
+
+            <nav class="navbar navbar-expand-lg sticky-top mb-5 transparent mx-auto">
+
+                <div class="container-fluid mx-4 pt-2 me-auto">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="60" fill="currentColor" class="bi bi-activity me-2" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" style='color:red;' d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"/>
+                    </svg>
+
+                    <a class="navbar-brand" href='/'>
+                        <h2><b><strong>Donor4Life</strong></b></h2><span class="sr-only"></span>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+                          *{
+                            font-family: 'Poppins', sans-serif;
+                            margin: 0;
+                            padding: 0;
+                            box-sizing: border-box;
+                            color:white;
+                          }
+                          .navbar-nav a{
+                            text-decoration: none;
+                            color:white;
+                            font-weight: 500;
+                          }
+
+                          .navbar-nav ul li{
+                            list-style-type: none;
+                            display: inline-block;
+                            margin-right: 10px;
+                            padding-bottom:3px ;
+                            color:white;
+                          }
+                      
+                          .navbar-nav li:after{
+                            content: '';
+                            margin: auto;
+                            display: block;
+                            height: 4px;
+                            width: 0%;
+                            background-color: transparent;
+                            transition: all 0.5s ease;
+                            color:white;
+                          }
+                          .navbar-nav li:hover:after{
+                            width: 100%;
+                            background-color: red;
+                            color:white;
+                          }
+                          nav {
+                            position: -webkit-sticky;
+                            position: sticky;
+                            /* sticky or fixed are fine */
+                            position: fixed;
+                            top: 0;
+                            height: 69px;
+                            width: 100%;
+                            background: linear-gradient(to bottom, #000, #0003 70%,#0000); /* background when scroll is in the top */
+                            transition: background .5s; /* control how smooth the background changes */
+                          }
+                          
+                          nav.scrolled {
+                            background: #0a0a0a;
+                          }
+                    </style>
+
+                    <div class="collapse navbar-collapse mx-3" id="navbarSupportedContent">
+
+                        <ul class="navbar-nav me-auto" style='color: white;'>
+
+                            {% if request.user.is_authenticated and request.user.role == 'donor' %}
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/home" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Home</h5></a>
+                            </li>
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/donor" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Be a donor</h5></a>
+                            </li>
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/donor_camp" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Donation Camp</h5></a>
+                            </li>
+                            {% endif %}
+                            {% if request.user.is_authenticated and request.user.role == 'recipient' %}
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/dashboard" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Dashboard</h5></a>
+                            </li>
+                            {% endif %}
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/organ_availability" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Organ availability</h5></a>
+                            </li>
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2 " href="/blog" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Blog</h5></a>
+                            </li>
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/about" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>About</h5></a>
+                            </li>
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/contact" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Contact</h5></a>
+                            </li>
+                        </ul>
+
+                        {% if not request.user.is_authenticated %}
+
+                            <div class="d-grid gap-2 d-md-flex mx-2">
+
+                              <div class="d-grid gap-2 d-md-flex justify-content-md-end mx-1">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Register
+                                    </button>
+                                    <ul class="dropdown-menu mt-2">
+                                      <li><a class="dropdown-item" href="/donor_register">Be a Donor</a></li>
+                                      <li><hr class="dropdown-divider"></li>
+                                      <li><a class="dropdown-item" href="/recipient_register">I am Recipient</a></li>
+                                    </ul>
+                                </div>  
+                              </div>
+
+                              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a class="btn btn-outline-light" type="button" href='/login'>Login</a>
+                              </div>
+
+                            </div>
+
+                        {% endif %}
+
+                        {% if request.user.is_authenticated %}
+
+                        <div class="dropdown mx-2 dropstart">
+                            <a href="#" class="d-flex align-items-center text-white text-decoration-none" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                <strong class="dropdown mx-3 text-truncate"style="max-width: 100px;" title='{{user.username.title}}'>
+                                    {{user.username.title}}
+                                </strong>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                </svg>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-start dropdown-menu-lg-start text-center mt-4">
+                                <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/profile">Your slot bookings</a></li>
+                                <li><a class="dropdown-item" href="/profile">Contact us</a></li>
+                                <li><a class="dropdown-item" href="/profile">FAQ</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+                            </ul>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+            <div class="container mt-5">
+                <h5 class="mt-1 text-center"></h5>
+            </div>
+
+            <div class="container col-sm-5 form control mx-auto">
+
+                <h5 class="mt-1 text-center">About US</h5>
+                <hr class="text-center mx-auto col-sm-3">
+            
+            </div>
+
+            <div class='mt-3'>
+
+                <div class="container pb-2">
+                  <div class="text-center qsb-title mb-5">
+                      <h1 style="color: black; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Welcome to Donor4Life..! Here you will know about us</h1>
+                      <h4 class='text-muted'>- Save Life</h4>
+                  </div>
+            </div>
+        
+          
+                  <div class="marketing">
+
+                      <div class="row text-center">
+                      <div class="col-lg-4">
+                        <img src="/static/1st_doctor.png" class="bd-placeholder-img rounded-circle" width="140" height="140" width="100%" height="100%" alt="">
+                          <h2 class="fw-normal text-center mt-3">Director</h2>
+                          <p>Health Care Cheif</p>
+                          <p><a class="btn btn-success" href="#">Know more &raquo;</a></p>
+                      </div>
+                      <div class="col-lg-4">
+                        <img  src="/static/2nd_doctor.png" class="bd-placeholder-img rounded-circle" width="140" height="140" width="100%" height="100%" alt="">
+                          <h2 class="fw-normal text-center mt-3">President</h2>
+                          <p>Health Care President</p>
+                          <p><a class="btn btn-success" href="#">Know more &raquo;</a></p>
+                      </div>
+                      <div class="col-lg-4">
+                          <img  src="/static/3rd_doctor.png" class="bd-placeholder-img rounded-circle" width="140" height="140" width="100%" height="100%" alt="">
+                          <h2 class="fw-normal text-center mt-3">Manager</h2>
+                          <p>Health Care Manager</p>
+                          <p><a class="btn btn-success" href="#">Know more &raquo;</a></p>
+                      </div>
+                      </div>
+          
+          
+                      <hr class="featurette-divider col-8 mx-auto color-black">
+          
+                      <div class="row featurette text-center my-5 py-5">
+                        <div class="col-md text-center mt-5 px-5">
+                            <h2 class="featurette-heading fw-normal lh-1" style='color: white;'>First featurette heading.</h2>
+                            <h4><span class="mt-3" style='color: white;'>It’ll blow your mind.</span></h4>
+                            <p class="lead mt-5" style='color: white;'>Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+                        </div>
+                      <div class="col-md px-5" style="border-color: rgb(5, 5, 5);">
+                        <img src="/static/healthcare.gif" class="card-img" width="240" height="340" alt="">
+                      </div>
+                      </div>
+          
+                      <hr class="featurette-divider col-8 mx-auto color-black">
+          
+                      <div class="row featurette text-center my-5 py-5">
+                      <div class="col-md order-md-2 text-center mt-5 px-5">
+                          <h2 class="featurette-heading fw-normal lh-1" style='color: white;'>Oh yeah, it’s that good.</h2>
+                          <h4><span class="mt-3" style='color: white;'>See for yourself.</span></h4>
+                          <p class="lead mt-5" style='color: white;'>Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+                      </div>
+                      <div class="col-md order-md-1 px-5" style="border-color: rgb(5, 5, 5);">
+                        <img src="/static/slide11.jpeg" class="card-img" width="240" height="340" alt="">
+                      </div>
+                      </div>
+          
+                      <hr class="featurette-divider col-8 mx-auto color-black">
+          
+                      <div class="row featurette text-center my-5 py-5">
+                      <div class="col-md-7 text-center mt-5 px-5">
+                        <h2 class="featurette-heading fw-normal lh-1" style='color: white;'>And lastly, this one.</h2>
+                        <h4><span class="mt-3" style='color: white;'>Checkmate.</span></h4>
+                        <p class="lead mt-5" style='color: white;'>And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+                      </div>
+                      <div class="col-md order-md-1 px-5">
+                        <img src="/static/dashborad3.jpg" class="card-img" width="240" height="340" alt="">
+                      </div>
+                      </div>
+          
+                  </div>
+
+                  <div class="container mx-auto py-4">
+                    <h5>About Health Care</h5>
+                    <hr class='col-sm-2'>
+                    <p>
+                    <p class="mt-1">
+                        India has one of the world’s lowest organ donation rates compared to the rest of the world. The urgent need for organ donation is highlighted by the fact that the demand for organ donation in India greatly outweighs the supply, and the ratio of deceased organ donors to the population is less than one donor per million. Around 5 lakh people die every year in India due to the unavailability of organs. Behind these numbers lie stories of hope, despair, and the incredible impact a single donor can have on multiple lives. Organ donation is not just a medical procedure; it is a gift that brings renewed hope and a second chance at life to those in need.
+                    </p>
+                    <p>
+                        While organs are vital, tissue donation is equally significant. A single organ donor has the potential to donate life-saving organs such as the heart, lungs, liver, kidneys, pancreas, and intestines. Tissue donation helps restore lives in many ways and can impact the lives of up to 75 people. From bone, tendons, and cartilage to corneas, skin, and heart valves, these generous donations improve the quality of life for numerous individuals. Tissue donation provides an opportunity for healing, restores mobility, and enables recipients to regain their independence.
+                    </p>
+                    <p>
+                        In India, a huge gap still exists between those requiring transplants and the actual number of organs available for transplant, resulting in the demise of many patients who require donated organs to stay alive. Organ donation is a powerful act of compassion and selflessness that holds the potential to save and transform lives. By dispelling misconceptions and spreading awareness, we can encourage more individuals to become organ donors, making a significant difference in countless lives. Kokilaben Dhirubhai Ambani Hospital is proud to support the Times Donation Drive and help make a difference. Registering to be an organ donor, discussing your decision with loved ones, and raising awareness within your community are steps we can all take to ensure that the gift of life continues to be shared, offering hope to those in need. Together, we can make a profound impact and give the ultimate gift – the gift of life.
+                    </p>
+                </div>
+
+            <h4 class='text-center my-5 mt-1 text-muted pt-5'>***  DONATE ORGAN'S = DONATE LIFE  ***</h4>
+
+        </div>
+
+        <footer class="footer pt-5" style='background-color: black; text-color: white'>
+
+            <div class="container px-4 px-md-3 mx-auto">
+
+                <style>
+                    @import url('https://fonts.googleapis.com/css?family=Cairo');
+                    
+                    .title {
+                      font-family: "Cairo";
+                      text-align: center;
+                      color: #FFF;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
+                      letter-spacing: 1px;
+                      line-height:2
+                    }
+                    
+                    .don {
+                      background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+                      background-size: cover;
+                      color: transparent;
+                      -moz-background-clip: text;
+                      -webkit-background-clip: text;
+                      text-transform: uppercase;
+                      font-size: 30px;
+                      margin: 10px 0;
+                    }
+                    
+                    .white-mode {
+                      text-decoration: none;
+                      padding: 7px 10px;
+                      background-color: #122;
+                      border-radius: 3px;
+                      color: #FFF;
+                      transition: .35s ease-in-out;
+                      position: absolute;
+                      left: 15px;
+                      bottom: 15px;
+                      font-family: "Montserrat";
+                    }
+                    
+                    .white-mode:hover {
+                      background-color: #FFF;
+                      color: #122;
+                    }
+        
+                </style>
+
+                <div class="col mx-auto">
+                    <div class="title">
+                        <h4 class='don pb-2'>Donor4Life</h4>
+                        <h6>Privacy Policy</h6>
+                        <h6>Terms and Conditions</h6>
+                    </div>
+                </div>
+
+                <div class="row mx-auto pb-4">
+
+                    <div class="col-sm-3 pt-3 mx-auto">
+
+                        <a class="btn" href="#" role="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                            </svg>
+                        </a>
+
+                        <a class="btn" href="#" role="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                            </svg>
+                        </a>
+
+                        <a class="btn" href="#" role="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                            </svg>
+                        </a>
+
+                        <a class="btn" href="#" role="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+                            </svg>
+                        </a>
+
+                    </div>
+
+                    <div class="col-sm-5 pt-3 mx-auto">
+                        <div class="app-cont text-center mb-3">
+                            <a href="https://play.google.com/store/apps/" target="_blank">
+                                <img src="https://static.naukimg.com/s/0/0/i/new-homepage/android-app.png" height="44" width="151">
+                            </a>
+                            <a href="https://itunes.apple.com/in/app/" target="_blank">
+                                <img src="https://static.naukimg.com/s/0/0/i/new-homepage/ios-app.png" height="44" width="151">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 pt-4 mx-auto">
+                        © 2024 Donor4Life. All rights reserved.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+        {% include 'partials/bootjs.html' %}
+
+    </body>
+
+</html>    

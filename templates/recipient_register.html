@@ -1,0 +1,358 @@
+{% load static %}
+<!Doctype html>
+
+<html lang="en" class="h-100">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <title>Donor4Life</title>
+    </head>
+
+    <body>
+
+        <div class="card-img-overlay py-0 mx-auto">
+
+            <nav class="navbar navbar-expand-lg sticky-top mb-5 transparent mx-auto">
+
+                <div class="container-fluid mx-4 pt-2 me-auto">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="60" fill="currentColor" class="bi bi-activity me-2" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" style='color:red;' d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"/>
+                    </svg>
+
+                    <a class="navbar-brand" href='/'>
+                        <h2><b><strong>Donor4Life</strong></b></h2><span class="sr-only"></span>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+                          *{
+                            font-family: 'Poppins', sans-serif;
+                            margin: 0;
+                            padding: 0;
+                            box-sizing: border-box;
+                            color:white;
+                          }
+                          .navbar-nav a{
+                            text-decoration: none;
+                            color:white;
+                            font-weight: 500;
+                          }
+
+                          .navbar-nav ul li{
+                            list-style-type: none;
+                            display: inline-block;
+                            margin-right: 10px;
+                            padding-bottom:3px ;
+                            color:white;
+                          }
+                      
+                          .navbar-nav li:after{
+                            content: '';
+                            margin: auto;
+                            display: block;
+                            height: 4px;
+                            width: 0%;
+                            background-color: transparent;
+                            transition: all 0.5s ease;
+                            color:white;
+                          }
+                          .navbar-nav li:hover:after{
+                            width: 100%;
+                            background-color: red;
+                            color:white;
+                          }
+                          nav {
+                            position: -webkit-sticky;
+                            position: sticky;
+                            /* sticky or fixed are fine */
+                            position: fixed;
+                            top: 0;
+                            height: 69px;
+                            width: 100%;
+                            background: linear-gradient(to bottom, #000, #0003 70%,#0000); /* background when scroll is in the top */
+                            transition: background .5s; /* control how smooth the background changes */
+                          }
+                          
+                          nav.scrolled {
+                            background: #0a0a0a;
+                          }
+                    </style>
+
+                    <div class="collapse navbar-collapse mx-3" id="navbarSupportedContent">
+
+                        <ul class="navbar-nav me-auto" style='color: white;'>
+
+                            {% if request.user.is_authenticated and request.user.role == 'donor' %}
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/home" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Home</h5></a>
+                            </li>
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/donor" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Be a donor</h5></a>
+                            </li>
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/donor_camp" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Donation Camp</h5></a>
+                            </li>
+                            {% endif %}
+                            {% if request.user.is_authenticated and request.user.role == 'recipient' %}
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/dashboard" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Dashboard</h5></a>
+                            </li>
+                            {% endif %}
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/organ_availability" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Organ availability</h5></a>
+                            </li>
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2 " href="/blog" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Blog</h5></a>
+                            </li>
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/about" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>About</h5></a>
+                            </li>
+                            <li class="nav-item px-1">
+                                <a class="nav-link mt-2" href="/contact" style='color: white;, font-family: Arial, Helvetica, sans-serif;'><h5>Contact</h5></a>
+                            </li>
+                        </ul>
+
+                        {% if not request.user.is_authenticated %}
+
+                            <div class="d-grid gap-2 d-md-flex mx-2">
+
+                              <div class="d-grid gap-2 d-md-flex justify-content-md-end mx-1">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Register
+                                    </button>
+                                    <ul class="dropdown-menu mt-2">
+                                      <li><a class="dropdown-item" href="/donor_register">Be a Donor</a></li>
+                                      <li><hr class="dropdown-divider"></li>
+                                      <li><a class="dropdown-item" href="/recipient_register">I am Recipient</a></li>
+                                    </ul>
+                                </div>  
+                              </div>
+
+                              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a class="btn btn-outline-light" type="button" href='/login'>Login</a>
+                              </div>
+
+                            </div>
+
+                        {% endif %}
+
+                        {% if request.user.is_authenticated %}
+
+                        <div class="dropdown mx-2 dropstart">
+                            <a href="#" class="d-flex align-items-center text-white text-decoration-none" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                <strong class="dropdown mx-3 text-truncate"style="max-width: 100px;" title='{{user.username.title}}'>
+                                    {{user.username.title}}
+                                </strong>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                </svg>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-start dropdown-menu-lg-start text-center mt-4">
+                                <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/profile">Your slot bookings</a></li>
+                                <li><a class="dropdown-item" href="/profile">Contact us</a></li>
+                                <li><a class="dropdown-item" href="/profile">FAQ</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+                            </ul>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+            <div class="container mt-5">
+                    <h5 class="mt-1 text-center"></h5>
+            </div>
+
+            <style>
+                @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&family=Young+Serif&display=swap");
+                *{
+                    box-sizing: border-box;
+                    margin: 0;
+                    padding: 0;
+                }
+                body{
+                    background: linear-gradient(90deg, rgba(148,187,233,1) 0%, #94C595 100%);;
+                }
+                .form-container{
+                    display: flex;
+                    flex-wrap: wrap;
+                    max-width: 800px;
+                    height auto;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    background-color: rgba(255, 255, 255, 0.2);
+                    backdrop-filter: blur(5px);
+                    margin: 40px auto;
+                }
+
+                .acc {
+                    text-align: center;
+                    color: #1a73e8;
+                }
+
+                .si {
+                    text-align: center;
+                    color: red;
+                }
+
+                .form {
+                    font-family: "Nunito", serif;
+                    padding: 20px;
+                    }
+
+                .form h5 {
+                    text-align: center;
+                    color: #1a73e8;
+                }
+                .form input {
+                    display: block;
+                    width: 100%;
+                    margin: 10px 20px;
+                    padding-left: 5px;
+                    border: none;
+                    border-radius:5px;
+                    border: 2px solid #1a73e8;
+                    outline: none;
+                    font-family: "Nunito", serif;
+                    font-size: 1.125rem;
+                }
+                .form label{
+                    display: block;
+                    margin-left: 10%;
+                    color: #1a73e8;
+                    font-weight: bold;
+                }
+                #eye-icon {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 251px;
+                    right: 75px;
+                    color: #1a73e8;
+                }
+                .form .term{
+                    margin-left: -27%;
+                }
+                .form button {
+                    display: block;
+                    width: 80%;
+                    margin: 20px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: #1a73e8;
+                    color: white;
+                    font-family: "Nunito", serif;
+                    font-size: 1.125rem;
+                    cursor: pointer;
+                    }
+
+                .form button:hover {
+                    background-color: #4285f4;
+                    }
+                .form a{
+                    display: block;
+                    text-align: left;
+                    color: #1a73e8;
+                    padding-left: 10%;
+                    text-decoration: none;
+                    }
+
+                    .form a span:hover {
+                        text-decoration: underline;
+                        color: red;
+                    }
+                .image-container {
+                width: calc(60% - (10px /2));
+                height: auto;
+                position: relative;
+
+                    }
+                .image-container img {
+                    margin-top: 100px;
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                }
+
+                /* Media Queries*/
+                @media screen and (max-width :768px) {
+                    .form-container {
+                    flex-direction : column;
+                }
+                .form button{
+                    padding-left: 20px;
+                    }
+                .image-container {
+                    width :50%;
+                    }
+                }
+            </style>
+
+            <div class="form-container">
+
+                <div class="form">
+                    
+                    <h5 class='text-center mb-4'>Singup - Recipient</h5>
+
+                    <form action="" method='POST'>
+                        {% csrf_token %}
+                        
+                        {% for field in form  %}
+                
+                        {% if field.errors %}
+
+                        <div class="mb-3">
+                            <label class="form-label">{{field.label}}</label>
+                            {{field}}
+                            <small>{{field.errors}}</small>
+                        </div>
+                
+                        {% else %}
+                
+                        <div class="mb-3">
+                            <label class="form-label">{{field.label}}</label>
+                            {{field}}
+                        </div>
+                            
+                        {% endif %}
+                            
+                        {% endfor %}          
+                
+                        <button class="btn btn-outline-success" type="submit" style="width:100%">Register</button>
+                
+                    </form> 
+
+                    <h6 class='mt-3 text-center acc'>Already have an account? <a class='text-center mt-2 si' href="{% url 'login' %}">Sign-in</a></h6>
+                
+                </div>
+
+                <div class="image-container">
+                    <img src="https://cdn-lite.ip2location.com/img/sign-up.png">
+                </div>
+
+            </div>
+
+        </div>
+
+        {% include 'partials/bootjs.html' %}
+
+    </body>
+
+</html>
