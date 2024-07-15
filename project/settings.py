@@ -130,7 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'app.CustomUser'
 
-GOOGLE_MAPS_API_KEY = 'AIzaSyAuWgd5CbuteeXLXsa_3vy5hE40DkcUFAg'
+GOOGLE_MAPS_API_KEY = ''
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
